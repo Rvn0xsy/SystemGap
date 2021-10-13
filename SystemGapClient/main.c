@@ -13,7 +13,7 @@ BOOL SendSystemGapMsg(char * gap_name,char * msg,int msg_len) {
 	WriteFile(hGap, msg, msg_len, &dwWritten, NULL);
 	if (dwWritten == dwWritten) {
 		CloseHandle(hGap);
-		printf("[+]Send Shellcode %d Bytes.\n", dwWritten);
+		printf("[+]Send %d Bytes.\n", dwWritten);
 		return TRUE;
 	}
 	CloseHandle(hGap);
