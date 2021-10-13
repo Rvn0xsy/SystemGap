@@ -4,58 +4,6 @@
 
 #define BUFF_SIZE 1024
 
-void EnableDebugPriv(void) //提升权限
-{
-	HANDLE hToken;
-	LUID sedebugnamevalue;
-	TOKEN_PRIVILEGES tkp;
-	if (!OpenProcessToken(GetCurrentProcess(),//返回当前进程的伪句柄
-		TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY,//要求改变访问信令中指定的权限
-		//要求查寻访问信令的内容
-		&hToken))//当函数返回时,该参数标识新打开的访问信令
-		return;
-	if (!LookupPrivilegeValue(NULL,//函数试图查找局部系统上的权限名称
-		SE_DEBUG_NAME,//要求调试一个进程的权限
-		&sedebugnamevalue))
-	{
-		CloseHandle(hToken);
-		return;
-	}
-	tkp.PrivilegeCount = 1;
-	tkp.Privileges[0].Luid = sedebugnamevalue;
-	tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;//允许权限
-	if (!AdjustTokenPrivileges(hToken,//标识访问信令
-		FALSE,//为FALSE,则根剧tkp指像的信息修改权限
-		&tkp,
-		sizeof tkp,
-		NULL,
-		NULL))
-		CloseHandle(hToken);
-}
-
-DWORD RemoveProcessSecurityDescriptor(
-	HANDLE hProcess          // handle of object
-)
-{
-	DWORD dwRes = 0;
-	ACL emptyACL;
-	if (NULL == hProcess)
-		return ERROR_INVALID_PARAMETER;
-
-	if (!InitializeAcl(&emptyACL, sizeof(emptyACL), ACL_REVISION))
-	{
-		printf("InitializeAcl Error %u\n", dwRes);
-		return dwRes;
-	}
-	dwRes = SetSecurityInfo(hProcess, SE_KERNEL_OBJECT, DACL_SECURITY_INFORMATION, NULL, NULL, &emptyACL, NULL);
-	if (ERROR_SUCCESS != dwRes) {
-		printf("SetNamedSecurityInfo Error %u\n", dwRes);
-		return dwRes;
-	}
-	printf("Sucess...\n");
-	return dwRes;
-}
-
 BOOL GenerateEveryoneSecAttr(PSECURITY_ATTRIBUTES sa) {
 	PSID pEveryoneSID = NULL;
 	PACL pACL = NULL;
@@ -170,7 +118,6 @@ void HandleGapMsg(HANDLE hGap) {
 }
 
 int main(int argc, char* argv[]) {
-	// EnableDebugPriv();
 	HANDLE hGap = CreateSystemGap("\\\\.\\pipe\\SystemGap");
 	if (hGap != INVALID_HANDLE_VALUE)
 	{
