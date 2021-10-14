@@ -1,5 +1,9 @@
 # SystemGap
 
+适用于解决不稳定Windows漏洞提权成功后进行权限驻守的办法
+
+![](./SystemGap.png)
+
 ## SystemGap - 监听者
 
 SystemGap 负责监听一个任意用户可读写的匿名管道，从管道中读取命令进行执行
