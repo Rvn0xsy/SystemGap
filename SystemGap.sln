@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGap", "SystemGap\Syst
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGapClient", "SystemGapClient\SystemGapClient.vcxproj", "{ACD5D1E3-9160-4CCE-9523-A40654D21006}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGapDll", "SystemGapDll\SystemGapDll.vcxproj", "{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{ACD5D1E3-9160-4CCE-9523-A40654D21006}.Release|x64.Build.0 = Release|x64
 		{ACD5D1E3-9160-4CCE-9523-A40654D21006}.Release|x86.ActiveCfg = Release|Win32
 		{ACD5D1E3-9160-4CCE-9523-A40654D21006}.Release|x86.Build.0 = Release|Win32
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Debug|x64.ActiveCfg = Debug|x64
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Debug|x64.Build.0 = Debug|x64
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Debug|x86.ActiveCfg = Debug|Win32
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Debug|x86.Build.0 = Debug|Win32
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Release|x64.ActiveCfg = Release|x64
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Release|x64.Build.0 = Release|x64
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Release|x86.ActiveCfg = Release|Win32
+		{0B94021D-21BA-4E54-AF1F-C5C6B02A9740}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
