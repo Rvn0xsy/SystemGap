@@ -1,6 +1,19 @@
 #include <Windows.h>
 #include <stdio.h>
 
+BOOL ReciveSystemGapMsg(HANDLE hGap) {
+	if (hGap == NULL)
+		return FALSE;
+	DWORD dwBytesRead = 0;
+	char buffer[100];
+	while (ReadFile(hGap, buffer, 100, &dwBytesRead, NULL) != 0)
+	{
+		printf("%s", buffer);
+		memset(buffer, 0, 100);
+		Sleep(100);
+	}
+	return TRUE;
+}
 
 BOOL SendSystemGapMsg(char * gap_name,char * msg,int msg_len) {
 	DWORD dwWritten = 0;
@@ -12,8 +25,9 @@ BOOL SendSystemGapMsg(char * gap_name,char * msg,int msg_len) {
 	}
 	WriteFile(hGap, msg, msg_len, &dwWritten, NULL);
 	if (dwWritten == dwWritten) {
-		CloseHandle(hGap);
 		printf("[+]Send %d Bytes.\n", dwWritten);
+		ReciveSystemGapMsg(hGap);
+		CloseHandle(hGap);
 		return TRUE;
 	}
 	CloseHandle(hGap);
