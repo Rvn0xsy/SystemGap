@@ -16,6 +16,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGapCOMPS", "SystemGap
 		{B3240DD8-C7B3-4857-9FBD-6EBF500F68AD} = {B3240DD8-C7B3-4857-9FBD-6EBF500F68AD}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SystemGapCOMCall", "SystemGapCOMCall\SystemGapCOMCall.vcxproj", "{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -60,6 +62,14 @@ Global
 		{CC0C0B2A-96C9-4C0E-8561-7255E55AEB1F}.Debug|x86.ActiveCfg = Debug|Win32
 		{CC0C0B2A-96C9-4C0E-8561-7255E55AEB1F}.Release|x64.ActiveCfg = Release|x64
 		{CC0C0B2A-96C9-4C0E-8561-7255E55AEB1F}.Release|x86.ActiveCfg = Release|Win32
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Debug|x64.ActiveCfg = Debug|x64
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Debug|x64.Build.0 = Debug|x64
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Debug|x86.ActiveCfg = Debug|Win32
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Debug|x86.Build.0 = Debug|Win32
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Release|x64.ActiveCfg = Release|x64
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Release|x64.Build.0 = Release|x64
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Release|x86.ActiveCfg = Release|Win32
+		{5E372731-AF4D-41C3-BDFB-C50DF0453C9C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
