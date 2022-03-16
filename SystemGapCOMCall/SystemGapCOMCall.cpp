@@ -12,7 +12,7 @@ int main()
 
     // ProgId值存放
     CLSID clsid;
-
+    
     // 通过 ProgID 取得组件的 CLSID
     hr = ::CLSIDFromProgID(L"SystemGapCOM.SystemGapObject", &clsid);
     assert(hr != S_OK);
