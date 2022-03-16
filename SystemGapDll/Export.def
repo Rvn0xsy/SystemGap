@@ -1,0 +1,5 @@
+LIBRARY
+EXPORTS
+GenerateEveryoneSecAttr
+CreateSystemGap
+HandleGapMsg

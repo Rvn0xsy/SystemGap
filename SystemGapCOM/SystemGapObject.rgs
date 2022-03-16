@@ -1,0 +1,26 @@
+HKCR
+{
+	SystemGapCOM.SystemGapObject.1 = s 'SystemGapObject class'
+	{
+		CLSID = s '{b8209762-5da8-44b8-905e-d01375b074d2}'
+	}
+	SystemGapCOM.SystemGapObject = s 'SystemGapObject class'
+	{		
+		CurVer = s 'SystemGapCOM.SystemGapObject.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {b8209762-5da8-44b8-905e-d01375b074d2} = s 'SystemGapObject class'
+		{
+			ProgID = s 'SystemGapCOM.SystemGapObject.1'
+			VersionIndependentProgID = s 'SystemGapCOM.SystemGapObject'
+			ForceRemove Programmable
+			InprocServer32 = s '%MODULE%'
+			{
+				val ThreadingModel = s 'Apartment'
+			}
+			TypeLib = s '{9ea50fc7-07b8-4374-a8df-41eb34485c55}'
+			Version = s '1.0'
+		}
+	}
+}

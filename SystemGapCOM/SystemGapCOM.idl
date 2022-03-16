@@ -1,0 +1,37 @@
+﻿// SystemGapCOM.idl: SystemGapCOM 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 生成类型库(SystemGapCOM.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(793586dd-ce44-432f-a5e8-358791e99e1d),
+	dual,
+	nonextensible,
+	pointer_default(unique)
+]
+interface ISystemGapObject : IDispatch
+{
+	[id(1)] HRESULT Create();
+};
+[
+	uuid(9ea50fc7-07b8-4374-a8df-41eb34485c55),
+	version(1.0),
+]
+library SystemGapCOMLib
+{
+	importlib("stdole2.tlb");
+	[
+		uuid(b8209762-5da8-44b8-905e-d01375b074d2)
+	]
+	coclass SystemGapObject
+	{
+		[default] interface ISystemGapObject;
+	};
+};
+
+import "shobjidl.idl";
