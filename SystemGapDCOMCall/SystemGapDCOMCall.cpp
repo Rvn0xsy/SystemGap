@@ -76,11 +76,23 @@ int main()
 		wprintf(L"CoCreateInstanceEx Error : %d , %x\n", GetLastError(), hr);
 		return -1;
 	}
-	hr = CoSetProxyBlanket(Results.pItf, RPC_C_AUTHN_WINNT, RPC_C_AUTHZ_NONE, NULL, RPC_C_AUTHN_LEVEL_CALL, RPC_C_IMP_LEVEL_IMPERSONATE, &AuthIdentity, EOAC_NONE);
-	if (FAILED(hr)) {
-		wprintf(L"CoSetProxyBlanket Error : %d , %x\n", GetLastError(), hr);
-		return -1;
+	if (Results.pItf != NULL) {
+		hr = CoSetProxyBlanket(
+			Results.pItf, 
+			RPC_C_AUTHN_WINNT, 
+			RPC_C_AUTHZ_NONE, 
+			NULL, 
+			RPC_C_AUTHN_LEVEL_CALL, 
+			RPC_C_IMP_LEVEL_IMPERSONATE,
+			&AuthIdentity, 
+			EOAC_NONE
+		);
+		if (FAILED(hr)) {
+			wprintf(L"CoSetProxyBlanket Error : %d , %x\n", GetLastError(), hr);
+			return -1;
+		}
 	}
+	
 	SystemGapIntfObj = (ISystemGapObject*)Results.pItf;
 	SystemGapIntfObj->Create();
 
